@@ -6,7 +6,13 @@
       placeholder="Username"
       [(ngModel)]="user"
       name="user"
+      #userForm="ngModel"
+      required
     />
+    <app-message
+      *ngIf="userForm.invalid"
+      message="User is Required"
+    ></app-message>
   </div>
   <div class="form-group">
     <input
@@ -15,7 +21,13 @@
       placeholder="Password"
       [(ngModel)]="password"
       name="password"
+      #pwdForm="ngModel"
+      required=""
     />
+    <app-message
+      *ngIf="pwdForm.invalid"
+      message="Password is Required"
+    ></app-message>
   </div>
 
   <button type="submit" class="btn btn-primary btn-block">Login</button>
