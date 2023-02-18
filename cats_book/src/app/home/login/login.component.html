@@ -1,5 +1,5 @@
 <h4 class="text-center">Login</h4>
-<form class="form md-4" (ngSubmit)="login()">
+<form class="form md-4" (ngSubmit)="login()" #loginForm="ngForm">
   <div class="form-group">
     <input
       class="form-control"
@@ -10,7 +10,7 @@
       required
     />
     <app-message
-      *ngIf="userForm.invalid"
+      *ngIf="userForm.invalid && userForm.touched"
       message="User is Required"
     ></app-message>
   </div>
@@ -25,10 +25,16 @@
       required=""
     />
     <app-message
-      *ngIf="pwdForm.invalid"
+      *ngIf="pwdForm.invalid && pwdForm.touched"
       message="Password is Required"
     ></app-message>
   </div>
 
-  <button type="submit" class="btn btn-primary btn-block">Login</button>
+  <button
+    type="submit"
+    class="btn btn-primary btn-block"
+    [disabled]="loginForm.invalid"
+  >
+    Login
+  </button>
 </form>
