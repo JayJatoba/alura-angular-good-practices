@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from 'src/app/authentication/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +10,19 @@ export class LoginComponent {
   user = '';
   password = '';
 
+  constructor(private authService: AuthenticationService) {}
+
+  ngOnInit() {}
+
   login() {
-    console.log(this.user);
-    console.log(this.password);
+    this.authService.authenticate(this.user, this.password).subscribe(
+      () => {
+        console.log('successful authentication');
+      },
+      (error) => {
+        alert("Invalid user's password");
+        console.log(error);
+      }
+    );
   }
 }
