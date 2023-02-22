@@ -6,7 +6,7 @@ const KEY = 'token';
   providedIn: 'root',
 })
 export class TokenService {
-  returnTOken() {
+  returnToken() {
     return localStorage.getItem(KEY) ?? '';
   }
   saveToken(token: string) {
@@ -16,7 +16,7 @@ export class TokenService {
     localStorage.removeItem(KEY);
   }
   hasToken() {
-    return !!this.returnTOken();
+    return !!this.returnToken();
   }
   constructor() {}
 }
