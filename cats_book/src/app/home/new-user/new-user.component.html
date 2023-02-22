@@ -1,11 +1,37 @@
 <h4 class="text-center">Register and show your pet</h4>
 
-<form class="form mt-4">
+<form class="form mt-4" [formGroup]="newUserForm" (submit)="signUp()">
   <div class="form-group">
-    <input placeholder="e-mail" class="form-control" />
+    <input placeholder="e-mail" class="form-control" formControlName="email" />
+    <app-message
+      *ngIf="
+        newUserForm.get('email')?.errors?.['required'] &&
+        newUserForm.get('email')?.touched
+      "
+      message="Email is required"
+    ></app-message>
+    <app-message
+      *ngIf="
+        newUserForm.get('email')?.errors?.['email'] &&
+        newUserForm.get('email')?.touched
+      "
+      message="Incorrect email format"
+    >
+    </app-message>
   </div>
   <div class="form-group">
-    <input placeholder="Complete Name" class="form-control" />
+    <input
+      placeholder="Complete Name"
+      class="form-control"
+      formControlName="fullName"
+    />
+    <app-message
+      *ngIf="
+        newUserForm.get('fullName')?.errors &&
+        newUserForm.get('fullName')?.touched
+      "
+      message="Incorrect Name"
+    ></app-message>
   </div>
   <div class="form-group">
     <input placeholder="User" class="form-control" />
