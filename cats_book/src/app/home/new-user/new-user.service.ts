@@ -8,7 +8,7 @@ import { NewUser } from './new-user';
 export class NewUserService {
   constructor(private http: HttpClient) {}
 
-  signNeuUser(newUser: NewUser) {
+  signNewUser(newUser: NewUser) {
     return this.http.post('http://localhost:3000/user/signup', newUser);
   }
 
